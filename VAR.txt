@@ -1,0 +1,49 @@
+PROGRAM:SETUPVAR
+
+:{0→⌊VAR
+:"VAR,→Str0
+:Archive ⌊VAR
+:Archive Str0
+
+PROGRAM:SETVAR
+
+:If inString(Str1,"," or Str1="VAR
+:Then
+:abs(1,1
+:End
+:UnArchive ⌊VAR
+:UnArchive Str0
+:Str1+",→Str1
+:If not(inString(Str0,Str1
+:Then
+:Str0+Str1→Str0
+:X→⌊VAR(1+dim(⌊VAR
+:Else
+:"X→⌊VAR(1
+:X→⌊VAR(sum(seq(sub(Str0,⌊VAR(1,1)=",",⌊VAR(1,inString(Str0,Str1)
+:"⌊VAR(1→X
+:End
+:Archive ⌊VAR
+:Archive Str0
+:"
+
+PROGRAM:GETVAR
+
+:If inString(Str1,",") or Str1="VAR
+:Then
+:abs(1,1
+:End
+:UnArchive ⌊VAR
+:UnArchive Str0
+:Str1+",→Str1
+:If not(inString(Str0,Str1
+:Then
+:Archive ⌊VAR
+:Archive Str0
+:0
+:Return
+:Else
+:⌊VAR(1+sum(seq(sub(Str0,X,1)=",",X,1,inString(Str0,Str1)
+:Archive ⌊VAR
+:Archive Str0
+:Return
